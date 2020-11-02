@@ -67,6 +67,7 @@ body {
     font-size: 1rem;
     font-weight: bold;
     grid-column: 1/-1;
+    grid-row: 200px;
 }
 
 .category {
@@ -86,10 +87,14 @@ body {
     display: grid;
     place-items: center;
     padding: .5em;
+    height: 100%;
 }
 
-.category-type, .category-type1 {
+.category-type1 {
     grid-column: 1/2;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .category-type2 {
@@ -151,4 +156,51 @@ textarea:focus {
 .activity-msg {
     text-align: center;
     font-size: 1rem;
+}
+
+.study-selected {
+    border: 1px solid #B3FD78;
+}
+
+.meditate-selected {
+    border: 1px solid #C278FD;
+}
+
+.exercise-selected {
+    border: 1px solid #FD8078;
+}
+
+.error {
+    border-bottom: 1px solid #EFB7EC;
+}
+
+.error-txt {
+    color: #EFB7EC;
+}
+
+.study-radio, .meditate-radio, .exercise-radio {
+    width: 100%;
+    height: 100%;
+}
+
+.study-container, .mediate-container, .exercise-container {
+    position: relative;
+}
+
+.study, .exercise, .meditate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.study-selected-color {
+    color: #B3FD78;
+}
+
+.meditate-selected-color {
+    color: #C278FD;
+}
+
+.exercise-selected-color {
+    color: #FD8078;
 }
