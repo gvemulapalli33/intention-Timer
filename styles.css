@@ -67,13 +67,13 @@ body {
     font-size: 1rem;
     font-weight: bold;
     grid-column: 1/-1;
-    grid-row: 200px;
+    grid-row: 1/2;
 }
 
 .category {
     display: grid;
     grid-template-columns: repeat(5, minmax(100px, 1fr));
-    grid-template-rows:repeat(2, 1fr);
+    grid-template-rows: auto 20px 1fr;
     box-shadow: #26222D;
 }
 
@@ -82,27 +82,52 @@ body {
     height: 25px;
 }
 
+.meditate-radio + .category-img {
+    background-image: url('./assets/meditate.svg');
+}
+
+.study-radio + .category-img {
+    background-image: url('./assets/study.svg');
+}
+
+.study-radio:checked + .category-img {
+    background-image: url('./assets/study-active.svg');
+}
+
+.meditate-radio:checked + .category-img {
+    background-image: url('./assets/meditate-active.svg');
+}
+
+.exercise-radio + .category-img {
+    background-image: url('./assets/exercise.svg');
+}
+
+.exercise-radio:checked + .category-img {
+    background-image: url('./assets/exercise-active.svg');
+}
+
 .category-type {
     border: 2px solid #FFF;
     display: grid;
     place-items: center;
     padding: .5em;
     height: 100%;
+    position: relative;
 }
 
 .category-type1 {
     grid-column: 1/2;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    grid-row: 3/4;
 }
 
 .category-type2 {
     grid-column: 3/4;
+    grid-row: 3/4;
 }
 
 .category-type3 {
     grid-column: 5/6;
+    grid-row: 3/4;
 }
 
 .category-txt {
@@ -179,12 +204,8 @@ textarea:focus {
 }
 
 .study-radio, .meditate-radio, .exercise-radio {
-    width: 100%;
-    height: 100%;
-}
-
-.study-container, .mediate-container, .exercise-container {
-    position: relative;
+    position: absolute;
+    opacity: 0;
 }
 
 .study, .exercise, .meditate {
@@ -193,14 +214,18 @@ textarea:focus {
     align-items: center;
 }
 
-.study-selected-color {
+.study-radio:checked ~ .category-txt {
     color: #B3FD78;
 }
 
-.meditate-selected-color {
+.meditate-radio:checked ~ .category-txt {
     color: #C278FD;
 }
 
-.exercise-selected-color {
+.exercise-radio:checked ~ .category-txt {
     color: #FD8078;
+}
+
+.task {
+    margin-top: 2em;
 }
