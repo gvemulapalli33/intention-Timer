@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>Timer</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="styles.css" />
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width:device-width;initial-scale:1"/>
+    </head>
+    <body>
+        <header class="title">Intention timer</header>
+        <main class="container">
+            <section class="activity">
+                <h2 class="sub-title">New Activity</h2>
+                <section class="form-container">
+                    <section class="category">
+                        <h2 class="category-title">Select a category:</h2>
+                        <article class="category-type category-type1">
+                            <img class="category-img" src="./assets/study.svg" alt="study" />
+                            <p class="category-txt">Study</p>
+                        </article>
+                        <article class="category-type category-type2">
+                            <img class="category-img" src="./assets/meditate.svg" alt="meditate" />
+                            <p class="category-txt">Meditate</p>
+                        </article>
+                        <article class="category-type category-type3">
+                            <img class="category-img" src="./assets/exercise.svg" alt="exercise" />
+                            <p class="category-txt">Exercise</p>
+                        </article>
+                    </section>
+                    <form class="timer-form">
+                        <label for="task">What would you like to accomplish during this time?</label>
+                        <textarea class="task"></textarea>
+                        <section class="time">
+                        <div class="time-input">
+                            <label for="minutes">Minutes</label>
+                            <textarea class="minutes"></textarea>
+                        </div>
+                        <div class="time-input">
+                            <label for="seconds">Minutes</label>
+                            <textarea class="seconds"></textarea>
+                        </div>
+                        </section>
+                        <button class="btn">start activity</button>
+                    </form>
+                </section>
+            </section>
+            <aside class="activity-list">
+                <h2 class="sub-title">Past Activities</h2>
+                <p class="activity-msg">you haven't logged any activities yet. Complete the form to the left to get started!</p>
+            </aside>
+        </main>
+    </body>
+</html>
