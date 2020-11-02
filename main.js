@@ -9,9 +9,6 @@ class ActivityTimer {
         this.$task = document.querySelector('.task');
         this.$min = document.querySelector('.minutes');
         this.$sec = document.querySelector('.seconds');
-       // this.$studyImg = document.querySelector('[data-type="study"] .category-img');
-       // this.$meditateImg = document.querySelector('[data-type="meditate"] .category-img');
-        //this.$exerciseImg = document.querySelector('[data-type="exercise"] .category-img');
         this.addEventListeners();
         this.currentCategory = '';
     }
@@ -23,28 +20,29 @@ class ActivityTimer {
       });
 
       document.addEventListener('input', (event) => {
-        this.validateInput(event);
+          this.validateInput(event);
       });
     }
 
     changeActivityStyle(event) {
         let {target} = event;
-        let containerValues = ['study-container', 'meditate-container', 'exercise-container'];
-        if(target.closest('div')) {
-        let containerValue = target.closest('div').className.split(' ');
-        let [container] = containerValues.filter((value) => containerValue.includes(value));
-        let parentContainer = document.querySelector(`.${container}`);
-        let name = container.split('-')[0];
-        let articleElm = parentContainer.querySelector(`.${name}`);
-        this.currentCategory = name;
-        let className = `${name}-selected`;
-        parentContainer.classList.add(className);
-        let imgElm = articleElm.querySelector('img');
-        let imgName = `${name}-active.svg`;
-        imgElm.setAttribute('src', `./assets/${imgName}`);
-        let msgElm = articleElm.querySelector('p');
-        msgElm.classList.add(`${name}-selected-color`);
+        let input = target.tagName === 'input' ||  target.closest('input');
+        if (input.getAttribute('name') && input.getAttribute('name') === 'category') {
+            let {checked, value} = input;
+            let label = checked && input.closest('label');
+            this.clearSelectedBorders();
+            label.classList.add(`${value}-selected`);
         }
+    }
+
+    clearSelectedBorders() {
+       let classValues = ['study-selected', 'meditate-selected', 'exercise-selected'];
+       let labelElms = document.querySelectorAll('label');
+       labelElms.forEach((label) => {
+            let names = label.className.split(' ');
+            names = names.filter((name) => !classValues.includes(name));
+            label.className = names.join(' ');
+       });
     }
 
     validateInput(event) {

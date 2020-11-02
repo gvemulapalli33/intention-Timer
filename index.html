@@ -14,45 +14,55 @@
             <section class="activity">
                 <h2 class="sub-title">New Activity</h2>
                 <section class="form-container">
-                    <form class="timer-form">
+                    <form name="timerForm" class="timer-form">
                         <section class="category">
-                            <label for="category" class="category-title">Select a category:</label>
-                            <div class="study-container category-type category-type1">
-                                <input class="study-radio" type="radio" id="study" name="category" />
-                                <article data-type="study" class="study">
-                                    <img class="category-img" src="./assets/study.svg" alt="study" />
-                                    <p class="category-txt">Study</p>
-                                </article> 
-                            </div>
-                            <div class="meditate-container category-type category-type2">
-                                <input class="meditate-radio" type="radio" id="meditate" name="category" />
-                                <article data-type="meditate" class="meditate">
-                                    <img class="category-img" src="./assets/meditate.svg" alt="meditate" />
-                                    <p class="category-txt">Meditate</p>
-                                </article>
-                             </div>
-                             <div class="exercise-container category-type category-type3">
-                                <input class="exercise-radio" type="radio" id="exercise" name="category" />
-                                <article data-type="exercise" class="exercise">
-                                    <img class="category-img" src="./assets/exercise.svg" alt="exercise" />
-                                    <p class="category-txt">Exercise</p>
-                                </article>
-                            </div>
+                            <h3 class="category-title">Select a category:</h3>
+                            <label for="study" class="category-type category-type1">
+                                <input class="study-radio" 
+                                    type="radio" 
+                                    id="study" 
+                                    value="study"
+                                    name="category" 
+                                    />
+                                <p class="category-img"></p>
+                                <p class="category-txt">Study</p>
+                            </label>
+                            <label for="meditate" class="category-type category-type2">
+                                <input class="meditate-radio" 
+                                    type="radio" 
+                                    id="meditate" 
+                                    name="category" 
+                                    value="meditate"
+                                />
+                                <p class="meditate-category-img"></p>
+                                <p class="category-txt">Meditate</p>
+                            </label>
+                            <label for="exercise" class="category-type category-type3">
+                                <input 
+                                    class="exercise-radio" 
+                                    type="radio" 
+                                    id="exercise" 
+                                    name="category" 
+                                    value="exercise"
+                                />
+                                <p class="category-img"></p>
+                                <p class="category-txt">Exercise</p>
+                            </label>
                         </section>
-                        <label for="task">What would you like to accomplish during this time?</label>
-                        <textarea class="task"></textarea>
+                        <label class="task" for="task">What would you like to accomplish during this time?</label>
+                        <textarea></textarea>
                         <span class="task-err error-txt"></span>
                         <section class="time">
-                        <div class="time-input">
-                            <label for="minutes">Minutes</label>
-                            <textarea class="minutes"></textarea>
-                            <span class="min-err"></span>
-                        </div>
-                        <div class="time-input">
-                            <label for="seconds">Seconds</label>
-                            <textarea class="seconds"></textarea>
-                            <span class="sec-err"></span>
-                        </div>
+                            <div class="time-input">
+                                <label for="minutes">Minutes</label>
+                                <textarea class="minutes"></textarea>
+                                <span class="min-err"></span>
+                            </div>
+                            <div class="time-input">
+                                <label for="seconds">Seconds</label>
+                                <textarea class="seconds"></textarea>
+                                <span class="sec-err"></span>
+                            </div>
                         </section>
                         <button class="btn">start activity</button>
                     </form>
