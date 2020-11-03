@@ -43,10 +43,10 @@ body {
     height: 100%;
 }
 
-.current-activity, .activity {
+.complete-activity, .current-activity, .activity {
     color: #CBC9CF;
     padding: 2em;
-    width: 75%;
+    width: 100%;
     border-right: 1px solid #46424D;
 }
 
@@ -55,7 +55,7 @@ body {
     margin-bottom: 1em;
 }
 
-.activity-details, .form-container {
+.completed-activity, .activity-details, .form-container {
     background-color: #46424D;
     padding: 3em;
     width: 100%;
@@ -112,7 +112,6 @@ body {
     display: grid;
     place-items: center;
     padding: .5em;
-    height: 100%;
     position: relative;
 }
 
@@ -174,9 +173,14 @@ textarea:focus {
     padding: .5em 1em;
 }
 
+.btn-log, .btn-create {
+    align-self: center;
+}
+
 .activity-list {
     padding: 2em;
     color: #CBC9CF;
+    width: 50%;
 }
 
 .activity-msg {
@@ -265,9 +269,60 @@ textarea:focus {
    width: 150px;
    height: 150px;
    border-radius: 50%;
+   margin-bottom: 2em;
 }
 
 .clock {
     margin-top: .5em;
     font-size: 3rem;
+}
+
+.disabled-color {
+    color: gray;
+}
+
+.card {
+    padding: .5em;
+    background-color: #46424D;
+    text-align:left;
+    margin: 1em;
+}
+
+.card-meditate {
+    padding-right: 1em;
+    border-right: 3px solid #C278FD;
+    margin-bottom: .5em;
+}
+
+.card-study {
+    border-right: 3px solid #B3FD78;
+    margin-bottom: .5em;
+}
+
+.card-exercise {
+    border-right: 3px solid #FD8078;
+    margin-bottom: .5em;
+}
+
+.card-desc {
+    font-size: .7rem;
+}
+
+.card-time {
+    font-size: .6rem;
+}
+
+.card-title {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: .7rem;
+}
+
+.completed-activity {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-disabled {
+    background-color: #46424D;
 }
