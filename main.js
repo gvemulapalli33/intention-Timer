@@ -6,14 +6,23 @@ class ActivityTimer {
 
     constructor() {
         this.activity = null;
+        this.loggedActivites = JSON.parse(localStorage.getItem('activities')) || [];
         this.$task = document.querySelector('.task-input');
         this.$min = document.querySelector('.minutes');
         this.$sec = document.querySelector('.seconds');
         this.$errTask = document.querySelector('.task-err');
-        this.addEventListeners();
+        this.$minErr = document.querySelector('.min-err');
+        this.$secErr = document.querySelector('.sec-err');
         this.currentCategory = '';
         this.$currentActivityDetails = document.querySelector('.current-activity');
+        this.$completeActivity = document.querySelector('.complete-activity');
         this.$activityDetails = document.querySelector('.activity');
+        this.$activityLog = document.querySelector('.activity-msg');
+        this.$startActivity = document.querySelector('.btn');
+
+        this.addEventListeners();
+        this.createCards();
+
     }
 
     addEventListeners() {
@@ -21,6 +30,8 @@ class ActivityTimer {
           this.changeActivityStyle(event);
           this.addActivity(event);
           this.timer(event);
+          this.logActivity(event);
+          this.createActivity(event);
       });
 
       document.addEventListener('input', (event) => {
@@ -52,6 +63,7 @@ class ActivityTimer {
 
     validateInput(event) {
         let {target} = event;
+        let errorMsg = target.classList.contains('minutes') ? this.$minErr : this.$secErr;
         if (target.classList.contains('task-input')) {
             let {value} = target;
             target.classList.remove('error');
@@ -61,9 +73,8 @@ class ActivityTimer {
                 this.$errTask.innerText = `length of input should be more than 5 characters`;
             }   
         }
+
         if (target.classList.contains('minutes') || target.classList.contains('seconds')) {
-            let errorMsg = target.classList.contains('minutes') ?
-            document.querySelector('.min-err') : document.querySelector('.sec-err')
             let {value} = target;
             target.classList.remove('error');
             errorMsg.innerText = '';
@@ -72,28 +83,31 @@ class ActivityTimer {
                 target.classList.add('error');
             }   
         }
+
+        if (!this.$errTask.innerText || !errorMsg.innerText) {
+            this.validateForm();
+        }
     }
 
     addActivity(event) {
         let {target} = event;
         if (target.classList.contains('btn')) {
             event.preventDefault();
-            this.validateForm();
             this.getActivityData();
         }
     }
 
     validateForm() {
-        let task = this.$task.value;
-        let min = this.$min.value;
-        let sec = this.$sec.value;
-        if( !task || !min || !sec) {
+        if (!this.$minErr.innerText || !this.$secErr.innerText || !this.$errTask.innerText) {
             this.showError();
+        } else {
+            this.$startActivity.classList.remove('btn-disabled');
         }
     }
 
     showError() {
-        this.$errTask.innerHTML = `<span class="error-txt"><span class="warning"></span> A description is required.</span>`;
+        this.$startActivity.classList.add('btn-disabled');
+        this.$errTask.innerHTML = `<span class="error-txt"><span class="warning"></span> A valid description is required.</span>`;
     }
 
     getActivityData() {
@@ -105,7 +119,7 @@ class ActivityTimer {
     }
 
     formatTime(time) {
-        if(+time < 10) {
+        if (+time < 10) {
             return "0" + time;
         } else {
             return time;
@@ -114,7 +128,9 @@ class ActivityTimer {
 
     timer(event) {
         let {target} = event;
-        if (target.classList.contains('status')) {
+        if (!target.disabled && target.classList.contains('status')) {
+            target.disabled = true;
+            target.classList.add('disabled-color');
             this.startTimer(+this.activity.minutes, +this.activity.seconds);
         }
     }
@@ -125,6 +141,7 @@ class ActivityTimer {
             totalTime--;
             if (totalTime <= 0) {
                 clearInterval(timerId);
+                this.showCompleteMessage();
             }
             let minutes = this.formatTime(Math.floor(totalTime/60));
             let seconds = this.formatTime(Math.floor(totalTime%60));
@@ -155,6 +172,68 @@ class ActivityTimer {
        `;
     }
 
+    showCompleteMessage() {
+        let statusElm = document.querySelector('.bg-category');
+        statusElm.innerHTML = `
+            <p class="status">complete!</p>
+        `;
+        statusElm.insertAdjacentHTML('afterend', `<p>Congratulations 🥳</p> <button class="btn btn-log">Log Activity</button>`)
+    }
+
+    logActivity(event) {
+        let {target} = event;
+        if (target.classList.contains('btn-log')) {
+            this.loggedActivites.push(this.activity);
+            localStorage.setItem('activities', JSON.stringify(this.loggedActivites));
+            this.createCards();
+            this.completeActivity();
+        }
+    }
+
+    createCards() {
+        this.$activityLog.innerHTML = '';
+        let cards = this.loggedActivites.map(({category, minutes, seconds, description}) => {
+            let className = `card-${category}`;
+            return `
+                <section class="card">
+                    <div class="${className}">
+                        <h3 class="card-title">${category}</h3>
+                        <p class="card-time">${minutes} MIN ${seconds} SECONDS</p>
+                    </div>
+                    <p class="card-desc">${description}</p>             
+                </section>
+            `
+        }).join('');
+        this.$activityLog.innerHTML = cards;
+    }
+
+    completeActivity() {
+        this.$currentActivityDetails.hidden = true;
+        this.$completeActivity.hidden = false;
+    }
+
+    createActivity(event) {
+        let {target} = event;
+        if (target.classList.contains('btn-create')) {
+            this.cleanUp();
+        }
+    }
+
+    cleanUp() {
+        this.$currentActivityDetails.hidden = true;
+        this.$completeActivity.hidden = true;
+        this.$activityDetails.hidden = false;
+        this.activity = null;
+        this.$task.value = '';
+        this.$min.value = ''; 
+        this.$sec.value = ''; 
+        this.$errTask.innerText = '';
+        let selectedCategory = document.querySelector(`.${this.currentCategory}-selected`);
+        selectedCategory.classList.remove(`${this.currentCategory}-selected`);
+        let radioBtn = selectedCategory.querySelector('input[type=radio]:checked');
+        radioBtn.checked = false;
+        this.currentCategory = '';
+    }
 }
 
 new ActivityTimer();
