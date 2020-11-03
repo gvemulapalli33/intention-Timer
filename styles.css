@@ -43,7 +43,7 @@ body {
     height: 100%;
 }
 
-.activity {
+.current-activity, .activity {
     color: #CBC9CF;
     padding: 2em;
     width: 75%;
@@ -55,7 +55,7 @@ body {
     margin-bottom: 1em;
 }
 
-.form-container {
+.activity-details, .form-container {
     background-color: #46424D;
     padding: 3em;
     width: 100%;
@@ -80,10 +80,11 @@ body {
 .category-img {
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }
 
 .meditate-radio + .category-img {
-    background-image: url('./assets/meditate.svg');
+    background-image: url('./assets/study.svg');
 }
 
 .study-radio + .category-img {
@@ -95,15 +96,15 @@ body {
 }
 
 .meditate-radio:checked + .category-img {
-    background-image: url('./assets/meditate-active.svg');
+    background-image: url('./assets/study-active.svg');
 }
 
 .exercise-radio + .category-img {
-    background-image: url('./assets/exercise.svg');
+    background-image: url('./assets/study.svg');
 }
 
 .exercise-radio:checked + .category-img {
-    background-image: url('./assets/exercise-active.svg');
+    background-image: url('./assets/study-active.svg');
 }
 
 .category-type {
@@ -228,4 +229,45 @@ textarea:focus {
 
 .task {
     margin-top: 2em;
+}
+
+.warning {
+    width: 25px;
+    height: 25px;
+    background-image: url('./assets/warning.svg');
+    display: inline-block;
+}
+
+.status {
+    text-transform: uppercase;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.activity-details {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.timer, .seperator {
+    color: #FFF;
+    margin-right: .1em;
+}
+
+.bg-category {
+   margin-top: 1em;
+   position: relative;
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+}
+
+.clock {
+    margin-top: .5em;
+    font-size: 3rem;
 }
