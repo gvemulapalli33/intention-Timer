@@ -20,6 +20,7 @@ class ActivityTimer {
       document.addEventListener('click', (event) => {
           this.changeActivityStyle(event);
           this.addActivity(event);
+          this.timer(event);
       });
 
       document.addEventListener('input', (event) => {
@@ -104,12 +105,34 @@ class ActivityTimer {
     }
 
     formatTime(time) {
-        console.log(time);
         if(+time < 10) {
             return "0" + time;
         } else {
             return time;
         }
+    }
+
+    timer(event) {
+        let {target} = event;
+        if (target.classList.contains('status')) {
+            this.startTimer(+this.activity.minutes, +this.activity.seconds);
+        }
+    }
+
+    startTimer(minutes, seconds) {
+        let totalTime = minutes * 60 + seconds;
+        const timer = () => {
+            totalTime--;
+            if (totalTime <= 0) {
+                clearInterval(timerId);
+            }
+            let minutes = this.formatTime(Math.floor(totalTime/60));
+            let seconds = this.formatTime(Math.floor(totalTime%60));
+            let [$min, $sec] = document.querySelectorAll('.timer');
+            $min.innerText = minutes;
+            $sec.innerText = seconds;
+        }
+        let timerId = setInterval(timer, 1000);
     }
 
     startActivity() {
