@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <title>Timer</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    </head>
+    <body>
+        <header class="title">Intention timer</header>
+        <main class="container">
+            <section class="activity">
+                <h2 class="sub-title">New Activity</h2>
+                <section class="form-container">
+                    <form name="timerForm" class="timer-form">
+                        <section class="category">
+                            <h3 class="category-title">Select a category:</h3>
+                            <label for="study" class="category-type category-type1">
+                                <input class="study-radio" 
+                                    type="radio" 
+                                    id="study" 
+                                    value="study"
+                                    name="category" 
+                                    />
+                                <p class="category-img"></p>
+                                <p class="category-txt">Study</p>
+                            </label>
+                            <label for="meditate" class="category-type category-type2">
+                                <input class="meditate-radio" 
+                                    type="radio" 
+                                    id="meditate" 
+                                    name="category" 
+                                    value="meditate"
+                                />
+                                <p class="category-img"></p>
+                                <p class="category-txt">Meditate</p>
+                            </label>
+                            <label for="exercise" class="category-type category-type3">
+                                <input 
+                                    class="exercise-radio" 
+                                    type="radio" 
+                                    id="exercise" 
+                                    name="category" 
+                                    value="exercise"
+                                />
+                                <p class="category-img"></p>
+                                <p class="category-txt">Exercise</p>
+                            </label>
+                        </section>
+                        <label class="task" for="task">What would you like to accomplish during this time?</label>
+                        <textarea class="task-input"></textarea>
+                        <span class="task-err error-txt"></span>
+                        <section class="time">
+                            <div class="time-input">
+                                <label for="minutes">Minutes</label>
+                                <textarea class="minutes"></textarea>
+                                <span class="min-err error-txt"></span>
+                            </div>
+                            <div class="time-input">
+                                <label for="seconds">Seconds</label>
+                                <textarea class="seconds"></textarea>
+                                <span class="sec-err error-txt"></span>
+                            </div>
+                        </section>
+                        <button class="btn">start activity</button>
+                    </form>
+                </section>
+            </section>
+            <section hidden class="current-activity">
+                <h2 class="sub-title">Current Activity</h2>
+                <section class="activity-details">  
+                </section>
+            </section>
+            <section hidden class="complete-activity">
+                <h2 class="sub-title">Completed Activity</h2>
+                <section class="completed-activity">  
+                    <button class="btn btn-create">Create A New Activity</button>
+                </section>
+            </section>
+            <aside class="activity-list">
+                <h2 class="sub-title">Past Activities</h2>
+                <p class="activity-msg">you haven't logged any activities yet. Complete the form to the left to get started!</p>
+            </aside>
+        </main>
+    <script type="text/javascript" src="main.bundle.js"></script></body>
+</html>

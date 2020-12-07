@@ -84,27 +84,27 @@ body {
 }
 
 .meditate-radio + .category-img {
-    background-image: url('./assets/study.svg');
+    background-image: url('../assets/meditate.svg');
 }
 
 .study-radio + .category-img {
-    background-image: url('./assets/study.svg');
+    background-image: url('../assets/study.svg');
 }
 
 .study-radio:checked + .category-img {
-    background-image: url('./assets/study-active.svg');
+    background-image: url('../assets/study-active.svg');
 }
 
 .meditate-radio:checked + .category-img {
-    background-image: url('./assets/study-active.svg');
+    background-image: url('../assets/meditate-active.svg');
 }
 
 .exercise-radio + .category-img {
-    background-image: url('./assets/study.svg');
+    background-image: url('../assets/study.svg');
 }
 
 .exercise-radio:checked + .category-img {
-    background-image: url('./assets/study-active.svg');
+    background-image: url('../assets/study-active.svg');
 }
 
 .category-type {
@@ -238,7 +238,7 @@ textarea:focus {
 .warning {
     width: 25px;
     height: 25px;
-    background-image: url('./assets/warning.svg');
+    background-image: url('../assets/warning.svg');
     display: inline-block;
 }
 

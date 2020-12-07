@@ -1,4 +1,5 @@
 import Activity from './activity.js';
+import "./styles.css";
 
 class ActivityTimer {
 
@@ -168,8 +169,7 @@ class ActivityTimer {
             <article class="${className}">
                 <p class="status">start</p>
             </article>
-        </section>    
-       `;
+        </section>`;
     }
 
     showCompleteMessage() {
