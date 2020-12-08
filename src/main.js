@@ -71,9 +71,9 @@ class ActivityTimer {
             let {value} = target;
             target.classList.remove('error');
             this.$errTask.innerText = '';
-            if (value.length < 5) {
+            if (value.length < 3) {
                 target.classList.add('error');
-                this.$errTask.innerText = `length of input should be more than 5 characters`;
+                this.$errTask.innerText = `length of input should be more than 3 characters`;
                 this.taskError = true;
             }   
         }
@@ -217,6 +217,7 @@ class ActivityTimer {
         this.$currentActivityDetails.hidden = true;
         this.$completeActivity.hidden = false;
         const completedActivity = this.$completeActivity.querySelector('.completed-activity');
+        this.$completeActivity.querySelector('.new-activity')?.remove();
         completedActivity.insertAdjacentHTML('beforeend', `<p class="new-activity">⛷️</p>`);
     }
 
@@ -239,6 +240,7 @@ class ActivityTimer {
         let selectedCategory = document.querySelector(`.${this.currentCategory}-selected`);
         selectedCategory.classList.remove(`${this.currentCategory}-selected`);
         let radioBtn = selectedCategory.querySelector('input[type=radio]:checked');
+        this.$startActivity.classList.add('btn-disabled');
         radioBtn.checked = false;
         this.currentCategory = '';
     }
