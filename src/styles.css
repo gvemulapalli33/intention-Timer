@@ -205,6 +205,16 @@ textarea:focus {
     font-size: 1.3rem;
 }
 
+.meditate-selected-color {
+    color: #C278FD;
+    font-size: 1.3rem;
+}
+
+.exercise-selected-color {
+    color: #FD8078;
+    font-size: 1.3rem;
+}
+
 .meditate-selected {
     border: 3px solid #C278FD;
 }
