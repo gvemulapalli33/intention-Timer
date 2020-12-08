@@ -73,7 +73,7 @@ class ActivityTimer {
             this.$errTask.innerText = '';
             if (value.length < 3) {
                 target.classList.add('error');
-                this.$errTask.innerText = `length of input should be more than 3 characters`;
+                this.$errTask.innerText = `<span class="warning"></span><span>length of input should be more than 3 characters</span>`;
                 this.taskError = true;
             }   
         }
