@@ -26,3 +26,10 @@ activityName, time in minutes and seconds
 ## Tooling
 1. Webpack
 2. github pages to deploy site
+
+
+## Extensions
+
+1. Animated Timer
+2. Pausing Timer
+3. Redo an Activity
