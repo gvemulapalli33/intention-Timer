@@ -14,10 +14,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-      {
         test: /\.(js)$/,
         exclude: /(node_modules|bower_components)/,
         use: {
@@ -31,15 +27,19 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: [
-              {
-                loader: 'file-loader',
-                options: {
+          {
+            loader: 'url-loader',
+            options: {
               name: '[name].[ext]',
-                  outputPath: 'images/',
-                  publicPath: 'images/'
-                }
-              }
-            ]
+              outputPath: 'dist/images/',
+              publicPath: 'images/',
+              esModule: false
+            }
+          }]
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       }
     ],
   },

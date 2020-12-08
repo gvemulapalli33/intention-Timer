@@ -1,5 +1,5 @@
 {
-  "name": "WhatsForDinner",
+  "name": "IntentionTimer",
   "version": "1.0.0",
   "main": "src/main.js",
   "scripts": {
@@ -12,11 +12,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gvemulapalli33/Cookbook.git"
+    "url": "git+https://github.com/gvemulapalli33/intention-Timer.git"
   },
   "author": "gvemulapalli",
   "license": "MIT",
-  "homepage": "https://github.com/gvemulapalli33/Cookbook.git",
+  "homepage": "https://github.com/gvemulapalli33/intention-Timer.git",
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
@@ -34,6 +34,9 @@
     "node-sass": "^4.14.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "svg-loader": "0.0.2",
+    "svg-url-loader": "^7.1.1",
+    "url-loader": "^4.1.1",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.2.1",
     "webpack-dev-server": "^3.1.14"

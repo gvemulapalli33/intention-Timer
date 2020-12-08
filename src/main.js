@@ -3,14 +3,12 @@ import "./styles.css";
 
 class ActivityTimer {
 
-    static counter = 1;
-
     constructor() {
         this.activity = null;
-        this.loggedActivites = JSON.parse(localStorage.getItem('activities')) || [];
+        this.loggedActivites = null;
         this.$task = document.querySelector('.task-input');
-        this.$min = document.querySelector('.minutes');
-        this.$sec = document.querySelector('.seconds');
+        this.$min = document.querySelector('#minutes');
+        this.$sec = document.querySelector('#seconds');
         this.$errTask = document.querySelector('.task-err');
         this.$minErr = document.querySelector('.min-err');
         this.$secErr = document.querySelector('.sec-err');
@@ -20,10 +18,12 @@ class ActivityTimer {
         this.$activityDetails = document.querySelector('.activity');
         this.$activityLog = document.querySelector('.activity-msg');
         this.$startActivity = document.querySelector('.btn');
-
+        this.taskError = null;
+        this.timeError = null;
         this.addEventListeners();
-        this.createCards();
-
+        if (this.loggedActivites.length > 0) {
+             this.createCards();
+        }
     }
 
     addEventListeners() {
@@ -64,29 +64,45 @@ class ActivityTimer {
 
     validateInput(event) {
         let {target} = event;
-        let errorMsg = target.classList.contains('minutes') ? this.$minErr : this.$secErr;
+        if (target.classList?.contains('task-input') || target.getAttribute('id') === 'minutes' || target.getAttribute('id') === 'seconds') {
+        let errorMsg = target.getAttribute('id') === 'minutes' ? this.$minErr : this.$secErr;
         if (target.classList.contains('task-input')) {
+            this.taskError = false;
             let {value} = target;
             target.classList.remove('error');
             this.$errTask.innerText = '';
             if (value.length < 5) {
                 target.classList.add('error');
                 this.$errTask.innerText = `length of input should be more than 5 characters`;
+                this.taskError = true;
             }   
         }
 
-        if (target.classList.contains('minutes') || target.classList.contains('seconds')) {
+        if (target.getAttribute('id') === 'minutes' || target.getAttribute('id') === 'seconds') {
+            this.timeError = false;
             let {value} = target;
             target.classList.remove('error');
             errorMsg.innerText = '';
-            if (!Number.isInteger(+value)) {
+            if (!Number.isInteger(+value))  {
                 errorMsg.innerText = `enter valid number`;
                 target.classList.add('error');
+                this.timeError = true;
             }   
+            if ((target.getAttribute('id') === 'minutes' && +value===0)) {
+                errorMsg.innerText = `enter number greater than 0`;
+                target.classList.add('error');
+                this.timeError = true;
+            }
         }
+        this.activateBtn();
+    }
+    }
 
-        if (!this.$errTask.innerText || !errorMsg.innerText) {
-            this.validateForm();
+    activateBtn() {
+        if (!this.taskError && (this.timeError !== null && !this.timeError)) {
+            this.$startActivity.classList.remove('btn-disabled');
+        } else {
+            this.$startActivity.classList.add('btn-disabled');
         }
     }
 
@@ -98,23 +114,10 @@ class ActivityTimer {
         }
     }
 
-    validateForm() {
-        if (!this.$minErr.innerText || !this.$secErr.innerText || !this.$errTask.innerText) {
-            this.showError();
-        } else {
-            this.$startActivity.classList.remove('btn-disabled');
-        }
-    }
-
-    showError() {
-        this.$startActivity.classList.add('btn-disabled');
-        this.$errTask.innerHTML = `<span class="error-txt"><span class="warning"></span> A valid description is required.</span>`;
-    }
-
     getActivityData() {
         let task = this.$task.value;
-        let minutes = this.formatTime(this.$min.value);
-        let seconds = this.formatTime(this.$sec.value);
+        let minutes = this.$min.value ? this.formatTime(this.$min.value) : '00';
+        let seconds =  this.$sec.value ? this.formatTime(this.$sec.value) : '00';
         this.activity = new Activity(this.currentCategory, task, minutes, seconds, false, Activity.counter++);
         this.startActivity();
     }
@@ -174,17 +177,20 @@ class ActivityTimer {
 
     showCompleteMessage() {
         let statusElm = document.querySelector('.bg-category');
+        const statusClass = `${this.currentCategory}-selected-color`;
         statusElm.innerHTML = `
             <p class="status">complete!</p>
         `;
-        statusElm.insertAdjacentHTML('afterend', `<p>Congratulations 🥳</p> <button class="btn btn-log">Log Activity</button>`)
+        this.activity.markComplete();
+        statusElm.insertAdjacentHTML('afterend', `<p class=${statusClass}>Congratulations 🥳</p><button class="btn btn-log">Log Activity</button>`)
     }
 
     logActivity(event) {
         let {target} = event;
         if (target.classList.contains('btn-log')) {
+            this.loggedActivites = this.activity.getSavedActivitesFromStorage();
             this.loggedActivites.push(this.activity);
-            localStorage.setItem('activities', JSON.stringify(this.loggedActivites));
+            this.activity.saveActivitesToStorage(this.loggedActivites);
             this.createCards();
             this.completeActivity();
         }
@@ -210,6 +216,8 @@ class ActivityTimer {
     completeActivity() {
         this.$currentActivityDetails.hidden = true;
         this.$completeActivity.hidden = false;
+        const completedActivity = this.$completeActivity.querySelector('.completed-activity');
+        completedActivity.insertAdjacentHTML('beforeend', `<p class="new-activity">⛷️</p>`);
     }
 
     createActivity(event) {

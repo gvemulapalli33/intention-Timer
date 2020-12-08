@@ -19,14 +19,17 @@ Error: #EFB7EC
 }
 
 html {
-    height: 100vh;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 body {
     background-color: #2B2733;
     font-family: 'Montserrat';
     color: #CBC9CF;
-    min-height: 100%;
+    display: grid;
+    grid-template-rows: 6vh 94vh;
 }
 
 .title {
@@ -38,9 +41,8 @@ body {
 }
 
 .container {
-    display: flex;
-    width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: 65% 35%;
 }
 
 .complete-activity, .current-activity, .activity {
@@ -48,6 +50,7 @@ body {
     padding: 2em;
     width: 100%;
     border-right: 1px solid #46424D;
+    max-height: 100%;
 }
 
 .sub-title {
@@ -57,9 +60,9 @@ body {
 
 .completed-activity, .activity-details, .form-container {
     background-color: #46424D;
-    padding: 3em;
-    width: 100%;
-    margin: 0 auto;
+    padding: 2em;
+    min-height: 400px;
+    min-width: 450px;
 }
 
 .category-title {
@@ -84,27 +87,27 @@ body {
 }
 
 .meditate-radio + .category-img {
-    background-image: url('../assets/meditate.svg');
+    background-image: url('../images/meditate.svg');
 }
 
 .study-radio + .category-img {
-    background-image: url('../assets/study.svg');
+    background-image: url('../images/study.svg');
 }
 
 .study-radio:checked + .category-img {
-    background-image: url('../assets/study-active.svg');
+    background-image: url('../images/study-active.svg');
 }
 
 .meditate-radio:checked + .category-img {
-    background-image: url('../assets/meditate-active.svg');
+    background-image: url('../images/meditate-active.svg');
 }
 
 .exercise-radio + .category-img {
-    background-image: url('../assets/study.svg');
+    background-image: url('../images/exercise.svg');
 }
 
 .exercise-radio:checked + .category-img {
-    background-image: url('../assets/study-active.svg');
+    background-image: url('../images/exercise-active.svg');
 }
 
 .category-type {
@@ -136,18 +139,21 @@ body {
 }
 
 .timer-form {
-    margin-top:2em;
+    margin-top:1em;
     display: flex;
     flex-direction: column;
 }
 
 textarea {
-   margin-top: .2em;
+   margin-top: 1.2em;
    width: 100%;
+   height: 1.3em;
    border: 0;
    border-bottom: 1px solid #FFF;
    resize: none;
    background-color: #46424D;
+   color: #fff;
+   font-size: 1.2rem;
 }
 
 textarea:focus {
@@ -171,6 +177,8 @@ textarea:focus {
     align-self: flex-end;
     text-transform: uppercase;
     padding: .5em 1em;
+    border-radius: 8px;
+    outline: none;
 }
 
 .btn-log, .btn-create {
@@ -180,7 +188,6 @@ textarea:focus {
 .activity-list {
     padding: 2em;
     color: #CBC9CF;
-    width: 50%;
 }
 
 .activity-msg {
@@ -189,15 +196,21 @@ textarea:focus {
 }
 
 .study-selected {
-    border: 1px solid #B3FD78;
+    border: 3px solid #B3FD78;
+}
+
+
+.study-selected-color {
+    color: #B3FD78;
+    font-size: 1.3rem;
 }
 
 .meditate-selected {
-    border: 1px solid #C278FD;
+    border: 3px solid #C278FD;
 }
 
 .exercise-selected {
-    border: 1px solid #FD8078;
+    border: 3px solid #FD8078;
 }
 
 .error {
@@ -206,6 +219,7 @@ textarea:focus {
 
 .error-txt {
     color: #EFB7EC;
+    margin-top: .5em;
 }
 
 .study-radio, .meditate-radio, .exercise-radio {
@@ -236,10 +250,7 @@ textarea:focus {
 }
 
 .warning {
-    width: 25px;
-    height: 25px;
-    background-image: url('../assets/warning.svg');
-    display: inline-block;
+    background-image: url('../images/warning.svg');
 }
 
 .status {
@@ -248,6 +259,7 @@ textarea:focus {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-size: 1.2rem;
 }
 
 .activity-details {
@@ -274,7 +286,7 @@ textarea:focus {
 
 .clock {
     margin-top: .5em;
-    font-size: 3rem;
+    font-size: 4rem;
 }
 
 .disabled-color {
@@ -285,7 +297,7 @@ textarea:focus {
     padding: .5em;
     background-color: #46424D;
     text-align:left;
-    margin: 1em;
+    margin-bottom: 1em;
 }
 
 .card-meditate {
@@ -309,13 +321,13 @@ textarea:focus {
 }
 
 .card-time {
-    font-size: .6rem;
+    font-size: .7rem;
 }
 
 .card-title {
     font-weight: bold;
     text-transform: uppercase;
-    font-size: .7rem;
+    font-size: .8rem;
 }
 
 .completed-activity {
@@ -325,4 +337,20 @@ textarea:focus {
 
 .btn-disabled {
     background-color: #46424D;
+    opacity: .5;
+}
+
+.new-activity {
+    display: grid;
+    place-items: center;
+    height: 200px;
+    font-size: 10rem;
+    margin-top: 3rem;
+}
+
+@media screen and (max-width:900px) {
+    .container {
+        grid-template-columns: auto;
+        grid-template-rows: auto auto;
+    }
 }

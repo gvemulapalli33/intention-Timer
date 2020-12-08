@@ -1,5 +1,7 @@
 class Activity {
 
+    static counter = 0;
+    
     constructor(category, description, minutes, seconds, completed, id) {
         this.category = category;
         this.description = description;
@@ -9,12 +11,16 @@ class Activity {
         this.id = id;
     }
 
-    countDown() {}
     markComplete() {
         this.complete = true;
     }
-    saveToStorage() {
-        localStorage.setItem('activity', '');
+
+    saveActivitesToStorage(activities) {
+        localStorage.setItem('activities', JSON.stringify(activities));
+    }
+
+    getSavedActivitesFromStorage() {
+        return JSON.parse(localStorage.getItem('activities')) || [];
     }
 }
 
