@@ -19,7 +19,7 @@ class Activity {
         localStorage.setItem('activities', JSON.stringify(activities));
     }
 
-    getSavedActivitesFromStorage() {
+    static getSavedActivitesFromStorage() {
         return JSON.parse(localStorage.getItem('activities')) || [];
     }
 }

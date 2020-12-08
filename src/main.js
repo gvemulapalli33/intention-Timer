@@ -5,7 +5,7 @@ class ActivityTimer {
 
     constructor() {
         this.activity = null;
-        this.loggedActivites = null;
+        this.loggedActivites = Activity.getSavedActivitesFromStorage();
         this.$task = document.querySelector('.task-input');
         this.$min = document.querySelector('#minutes');
         this.$sec = document.querySelector('#seconds');
@@ -64,7 +64,7 @@ class ActivityTimer {
 
     validateInput(event) {
         let {target} = event;
-        if (target.classList?.contains('task-input') || target.getAttribute('id') === 'minutes' || target.getAttribute('id') === 'seconds') {
+        if (target.classList.contains('task-input') || target.getAttribute('id') === 'minutes' || target.getAttribute('id') === 'seconds') {
         let errorMsg = target.getAttribute('id') === 'minutes' ? this.$minErr : this.$secErr;
         if (target.classList.contains('task-input')) {
             this.taskError = false;
@@ -188,7 +188,6 @@ class ActivityTimer {
     logActivity(event) {
         let {target} = event;
         if (target.classList.contains('btn-log')) {
-            this.loggedActivites = this.activity.getSavedActivitesFromStorage();
             this.loggedActivites.push(this.activity);
             this.activity.saveActivitesToStorage(this.loggedActivites);
             this.createCards();
