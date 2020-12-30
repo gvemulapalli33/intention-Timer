@@ -15,12 +15,11 @@ activityName, time in minutes and seconds
 
 ### ScreenShots
 ![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/initialScreen.png)
-![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active1.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/activity.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active2.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active3.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/enterdetails.png)
-![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/runningTime.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/LogActivity.png)
 ![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/DoneActivity.png)
 
