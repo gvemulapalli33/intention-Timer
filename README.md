@@ -12,6 +12,18 @@ activityName, time in minutes and seconds
 6. Logged Activities are stored on Local Storage and persisted across user visits.
 7. User can see list of all of their `Past Activities`.
 
+
+### ScreenShots
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/initialScreen.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active1.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active2.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/active3.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/enterdetails.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/runningTime.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/LogActivity.png)
+![screenshot](https://raw.github.com/gvemulapalli33/intention-Timer/master/DoneActivity.png)
+
 ## Set up
 1. npm install
 2. npm run build 
